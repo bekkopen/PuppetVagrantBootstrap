@@ -91,6 +91,7 @@ Vagrant::Config.run do |config|
     end
   end
 
+
   # Enable provisioning with chef solo, specifying a cookbooks path (relative
   # to this Vagrantfile), and adding some recipes and/or roles.
   #
