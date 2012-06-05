@@ -63,16 +63,16 @@ Vagrant::Config.run do |config|
     db_config.vm.box_url = "https://dl.dropbox.com/u/1769194/vbox/centos55_64.box"
     db_config.vm.box = "vagrantPuppetBootstrap"
     db_config.vm.forward_port 22, 2222
-    db_config.vm.forward_port 3306, 3306
+    db_config.vm.forward_port 1521, 1521
 
     db_config.vm.network :hostonly, "33.33.33.10"
 
-    #db_config.vm.provision :puppet do |puppet|
-    # puppet.manifests_path = "puppet/manifests"
-    # puppet.manifest_file  = "db.pp"
-    # puppet.module_path = "puppet/modules"
-    # puppet.options = "--trace --debug"
-    #end
+    db_config.vm.provision :puppet do |puppet|
+     puppet.manifests_path = "puppet/manifests"
+     puppet.manifest_file  = "db.pp"
+     puppet.module_path = "puppet/modules"
+     puppet.options = "--trace --debug"
+    end
   end
 
   config.vm.define :web do |web_config|
