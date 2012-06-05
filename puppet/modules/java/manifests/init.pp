@@ -17,12 +17,6 @@ class java {
 			source => "puppet:///modules/java/jdk-6u22-linux-x64.bin" ;
 	}
 	file {
-		"/usr/local/app/java" :
-			ensure => link,
-			target => "/opt/jdk1.6.0_22",
-			require => [Exec["jdk_install"]],
-	}
-	file {
 		"/opt/java" :
 			ensure => link,
 			target => "/opt/jdk1.6.0_22",

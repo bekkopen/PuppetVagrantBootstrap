@@ -1,9 +1,9 @@
 class javahome {
 	file {
-		'/etc/environment' :
+		'/usr/local/app/.bashrc' :
 			ensure => present,
 			mode => 644,
-			owner => 'root',
-			source => 'puppet:///modules/javahome/environment',
+			owner => 'appuser',
+			source => 'puppet:///modules/javahome/bashrc',
 	}
 }
