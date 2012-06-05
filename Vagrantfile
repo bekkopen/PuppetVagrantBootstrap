@@ -67,7 +67,7 @@ Vagrant::Config.run do |config|
 
     db_config.vm.network :hostonly, "33.33.33.10"
 
-    #config.vm.boot_mode = :gui
+    config.vm.boot_mode = :gui
 
     db_config.vm.provision :puppet do |puppet|
      puppet.manifests_path = "puppet/manifests"
@@ -85,7 +85,7 @@ Vagrant::Config.run do |config|
 
     web_config.vm.network :hostonly, "33.33.33.11"
     
-    #config.vm.boot_mode = :gui
+    config.vm.boot_mode = :gui
 
     web_config.vm.provision :puppet do |puppet|
       puppet.manifests_path = "puppet/manifests"

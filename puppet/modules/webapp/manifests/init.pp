@@ -10,6 +10,7 @@ class webapp {
         }
 
 	exec { 'Extract webapp' :
+          user => 'appuser',
           cwd => "/usr/local/app",
           command => "unzip -qq $webapp",
           creates => '/usr/local/app/webapp-1.0',
@@ -17,18 +18,11 @@ class webapp {
           require => File["/usr/local/app/$webapp"],
         }
 
-        file { "/usr/local/app/webapp-1.0":
-          ensure => directory,
-          owner => 'appuser',
-          group => 'appuser',
-          require => Exec['Extract webapp'],
-        }
-
         file { '/usr/local/app/webapp' :
           ensure => link,
           target => "/usr/local/app/webapp-1.0",
           owner => 'appuser',
           group => 'appuser',
-          require => File["/usr/local/app/webapp-1.0"],
+          require => Exec['Extract webapp'],
         }
 }
