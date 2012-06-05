@@ -7,11 +7,11 @@ Vagrant::Config.run do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "vagrantPuppetBootstrap"
+  #config.vm.box = "vagrantPuppetBootstrap"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "https://dl.dropbox.com/u/1769194/vbox/centos55_64.box"
+  #config.vm.box_url = "https://dl.dropbox.com/u/1769194/vbox/centos55_64.box"
 
   # Boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui
@@ -29,7 +29,7 @@ Vagrant::Config.run do |config|
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
-  # config.vm.forward_port 80, 8080
+  #config.vm.forward_port 80, 8080
 
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
@@ -58,6 +58,38 @@ Vagrant::Config.run do |config|
   #   puppet.manifests_path = "manifests"
   #   puppet.manifest_file  = "base.pp"
   # end
+
+  config.vm.define :db do |db_config|
+    db_config.vm.box_url = "https://dl.dropbox.com/u/1769194/vbox/centos55_64.box"
+    db_config.vm.box = "vagrantPuppetBootstrap"
+    db_config.vm.forward_port 22, 2222
+    db_config.vm.forward_port 3306, 3306
+
+    db_config.vm.network :hostonly, "33.33.33.10"
+
+    #db_config.vm.provision :puppet do |puppet|
+    # puppet.manifests_path = "puppet/manifests"
+    # puppet.manifest_file  = "db.pp"
+    # puppet.module_path = "puppet/modules"
+    # puppet.options = "--trace --debug"
+    #end
+  end
+
+  config.vm.define :web do |web_config|
+   web_config.vm.box_url = "https://dl.dropbox.com/u/1769194/vbox/centos55_64.box"
+    web_config.vm.box = "vagrantPuppetBootstrap"
+    web_config.vm.forward_port 9090, 9090
+    web_config.vm.forward_port 22, 2200
+
+    web_config.vm.network :hostonly, "33.33.33.11"
+
+    #web_config.vm.provision :puppet do |puppet|
+    # puppet.manifests_path = "puppet/manifests"
+    # puppet.manifest_file  = "web.pp"
+    # puppet.module_path = "puppet/modules"
+    # puppet.options = "--trace --debug"
+    #end
+  end
 
   # Enable provisioning with chef solo, specifying a cookbooks path (relative
   # to this Vagrantfile), and adding some recipes and/or roles.
