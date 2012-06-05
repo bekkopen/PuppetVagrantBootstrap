@@ -2,6 +2,7 @@ Exec { path => "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/us
 
 import 'classes/**'
 include base
-
+include maven
+include users::appuser
 include users::git
 rubyapp::app{'my_rails_project': }
