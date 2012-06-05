@@ -8,5 +8,5 @@ A bootstrap project for Vagrant and Puppet.
 
 == Getting started
 1. vagrant init
-2. vagrant box add vagrantPuppetBootstrap ~/Dropbox/vbox/centos55_64.box
+2. vagrant box add
 3. vagrant up
