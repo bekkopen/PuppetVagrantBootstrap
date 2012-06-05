@@ -83,12 +83,12 @@ Vagrant::Config.run do |config|
 
     web_config.vm.network :hostonly, "33.33.33.11"
 
-    #web_config.vm.provision :puppet do |puppet|
-    # puppet.manifests_path = "puppet/manifests"
-    # puppet.manifest_file  = "web.pp"
-    # puppet.module_path = "puppet/modules"
-    # puppet.options = "--trace --debug"
-    #end
+    web_config.vm.provision :puppet do |puppet|
+      puppet.manifests_path = "puppet/manifests"
+      puppet.manifest_file  = "web.pp"
+      puppet.module_path = "puppet/modules"
+      puppet.options = "--trace"
+    end
   end
 
   # Enable provisioning with chef solo, specifying a cookbooks path (relative
